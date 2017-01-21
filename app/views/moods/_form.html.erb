@@ -1,0 +1,24 @@
+<%= form_for(@mood) do |f| %>
+  <% if @mood.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% @mood.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.radio_button("emotional_state", "good") %>
+    <%= f.label :emotional_state , "Good" %><br/>
+    <%= f.radio_button("emotional_state", "neutral") %>
+    <%= f.label :emotional_state , "Neutral" %><br/>
+    <%= f.radio_button("emotional_state", "bad") %>
+    <%= f.label :emotional_state , "Bad" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

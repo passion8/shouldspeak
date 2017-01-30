@@ -15,6 +15,7 @@ class MoodsController < ApplicationController
   # GET /moods/new
   def new
     @mood = Mood.new
+    @mood_date = params[:mood_date]
   end
 
   # GET /moods/1/edit
@@ -26,7 +27,9 @@ class MoodsController < ApplicationController
   def create
     @mood = Mood.new(mood_params)
     @mood.user_id = current_user.id
+    byebug
     if @mood.save
+      
       redirect_to bye_path , notice: 'Your data is saved. Thanks!'
     else
       redirect_to bye_path , alert: "you already submitted today's form"
@@ -65,6 +68,6 @@ class MoodsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mood_params
-      params.require(:mood).permit(:emotional_state, :user_id)
+      params.require(:mood).permit(:emotional_state, :user_id,:mood_date)
     end
 end

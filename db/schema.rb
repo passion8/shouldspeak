@@ -11,16 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170121140115) do
+ActiveRecord::Schema.define(version: 20170129052613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "mood_reasons", force: :cascade do |t|
+    t.integer  "mood_id"
+    t.integer  "user_id"
+    t.string   "why"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "mood_reasons", ["why"], name: "index_mood_reasons_on_why", using: :btree
 
   create_table "moods", force: :cascade do |t|
     t.string   "emotional_state"
     t.integer  "user_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.date     "mood_date"
   end
 
   create_table "users", force: :cascade do |t|

@@ -18,6 +18,7 @@
     <%= f.label :emotional_state , "Bad" %>
   </div>
 
+  <%= (f.hidden_field :mood_date , value: @mood_date)  if @mood_date %>
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -1,1 +1,13 @@
-Thanks!
+<% (15.days.ago.to_date..Date.today).to_a.each do |date| %>
+  <% mood = @moods.select { |m| m.mood_date == date }.first  %>
+  <% if mood %>
+    <%= "#{mood.created_at.strftime("%a, %d %B %Y")}: #{mood.emotional_state}" %>
+  <% else %>
+    <% if date == Date.yesterday.to_date %>
+      click <%= link_to "here", new_mood_path(mood_date: date) %> to write <%= Date.parse(date.to_s).strftime("%a, %d %B %Y") %> mood.
+    <% else %>
+      No data at <%= Date.parse(date.to_s).strftime("%a, %d %B %Y")%>.
+     <% end %>
+  <% end %>
+  <br/>
+<% end %>

@@ -27,9 +27,7 @@ class MoodsController < ApplicationController
   def create
     @mood = Mood.new(mood_params)
     @mood.user_id = current_user.id
-    byebug
     if @mood.save
-      
       redirect_to bye_path , notice: 'Your data is saved. Thanks!'
     else
       redirect_to bye_path , alert: "you already submitted today's form"
